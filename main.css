@@ -1,0 +1,26 @@
+.body{
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+}
+td:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+td {
+    border-radius: 6px;
+    overflow: hidden;
+    border-color: #f0f0f0;
+}
+
+button {
+    border-radius: 6px !important;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px;
+    /* optional spacing between cells */
+}
+.dropdown-menu.show{
+   width: 50vh;
+}
