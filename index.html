@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script>
     <style>
@@ -88,8 +89,9 @@
                     </div>
                     <!-- Angle + F-E -->
                     <div class="d-flex mb-2">
-                        <button type="button" id="angleModeBtn" class="btn btn-light me-2" onclick="toggleAngleMode()">DEG</button>
-                        <button type="button" class="btn btn-light">F-E</button>
+                        <button type="button" id="angleModeBtn" class="btn btn-light me-2"
+                            onclick="toggleAngleMode()">DEG</button>
+                        <button type="button" class="btn btn-light" onclick="toggleExponential()">F-E</button>
                     </div>
                     <!-- Memory Buttons -->
                     <div class="d-flex mb-2 flex-wrap gap-1">
@@ -109,7 +111,8 @@
                             <div class="dropdown-menu p-0 dropmenu">
                                 <div class="container-fluid">
                                     <div class="row g-2">
-                                        <div class="col-3"><button class="btn btn-light w-100">2<sup>nd</sup></button></div>
+                                        <div class="col-3"><button class="btn btn-light w-100">2<sup>nd</sup></button>
+                                        </div>
                                         <div class="col-3"><button class="btn btn-light w-100">sin</button></div>
                                         <div class="col-3"><button class="btn btn-light w-100">cos</button></div>
                                         <div class="col-3"><button class="btn btn-light w-100">tan</button></div>
@@ -131,8 +134,10 @@
                                 <div class="container-fluid">
                                     <div class="row g-2">
                                         <div class="col-4"><button class="btn btn-light w-100">|x|</button></div>
-                                        <div class="col-4"><button class="btn btn-light w-100">&#8970;x&#8971;</button></div>
-                                        <div class="col-4"><button class="btn btn-light w-100">&#8968;x&#8969;</button></div>
+                                        <div class="col-4"><button class="btn btn-light w-100">&#8970;x&#8971;</button>
+                                        </div>
+                                        <div class="col-4"><button class="btn btn-light w-100">&#8968;x&#8969;</button>
+                                        </div>
 
                                         <div class="col-4"><button class="btn btn-light w-100">rand</button></div>
                                         <div class="col-4"><button class="btn btn-light w-100">&rarr;dms</button></div>
@@ -142,40 +147,62 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Keypad -->
                     <div class="table-responsive">
                         <table class="table table-bordered mb-0">
                             <tbody class="bg-light">
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">2<sup>nd</sup></button>
+                                    <td class="p-0"><button type="button"
+                                            class="btn btn-light w-100 h-100">2<sup>nd</sup></button>
                                     </td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">&pi;</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">e</button></td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('pi')">&pi;</button></td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('e')">e</button>
+                                    </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="clearCalc()">C</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"><i
-                                                class="bi bi-backspace"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">x<sup>2</sup></button>
-                                    </td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">1/x</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">|x|</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">exp</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">mod</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">&sup2;&radic;x</button>
-                                    </td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">(</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">)</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">n!</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">&divide;</button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="backspaceKey()">
+                                            <i class="ri-delete-back-2-line"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">x<sup>y</sup></button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('^2')">x<sup>2</sup></button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">1/x</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('abs(')">|x|</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">exp</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('mod')">mod</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('sqrt(')">&sup2;&radic;x</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('(')">(</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey(')')">)</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('!')">n!</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('/')">&divide;</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class=" p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('^')">x<sup>y</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('7')">7</button></td>
@@ -183,11 +210,13 @@
                                             onclick="pressKey('8')">8</button></td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('9')">9</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">&times;</button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('*')">&times;</button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">10<sup>x</sup></button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('10^')">10<sup>x</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('4')">4</button></td>
@@ -199,7 +228,8 @@
                                             onclick="pressKey('-')">-</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">log</button></td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">log</button>
+                                    </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('1')">1</button></td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
@@ -210,10 +240,17 @@
                                             onclick="pressKey('+')">+</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">ln</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">±</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">0</button></td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">.</button></td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100 ">ln</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="toggleSign()">±</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100 "
+                                            onclick="pressKey('0')">0</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey('.')">.</button>
+                                    </td>
                                     <td class="p-0"><button type="button" class="btn btn-primary w-100 h-100"
                                             onclick="calculate()">=</button></td>
                                 </tr>
@@ -233,14 +270,8 @@
             </div>
         </div>
     </div>
-    <script>
-        const angleModes = ["DEG", "RAD", "GRAD"];
-        let currentAngleIndex = 0;
-        function toggleAngleMode() {
-            currentAngleIndex = (currentAngleIndex + 1) % angleModes.length;
-            document.getElementById("angleModeBtn").textContent = angleModes[currentAngleIndex];
-        }
-    </script>
+    <script src="calculator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
 </body>
 
 </html>
