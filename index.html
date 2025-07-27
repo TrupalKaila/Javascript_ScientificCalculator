@@ -73,6 +73,12 @@
         .btn-primary:hover {
             background: #4338ca;
         }
+
+        .second-active {
+            background: #6366f1 !important;
+            color: #fff !important;
+            border: 2px solid #4338ca !important;
+        }
     </style>
 </head>
 
@@ -153,7 +159,7 @@
                             <tbody class="bg-light">
                                 <tr>
                                     <td class="p-0"><button type="button"
-                                            class="btn btn-light w-100 h-100">2<sup>nd</sup></button>
+                                            class="btn btn-light w-100 h-100" id="secondBtn" onclick="toggleSecond()">2<sup>nd</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('pi')">&pi;</button></td>
@@ -170,22 +176,24 @@
                                 </tr>
                                 <tr>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('^2')">x<sup>2</sup></button>
-                                    </td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">1/x</button>
+                                            id="squareBtn" onclick="calculateSquare()">x<sup>2</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('abs(')">|x|</button>
-                                    </td>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">exp</button>
+                                            onclick="calculateReciprocal()">1/x</button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('mod')">mod</button>
+                                            onclick="calculateAbs()">|x|</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="calculateExp()">exp</button>
+                                    </td>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            onclick="pressKey(' mod ')">mod</button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('sqrt(')">&sup2;&radic;x</button>
+                                            id="sqrtBtn" onclick="calculateSqrt()">&sup2;&radic;x</button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('(')">(</button>
@@ -202,7 +210,7 @@
                                 </tr>
                                 <tr>
                                     <td class=" p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('^')">x<sup>y</sup></button>
+                                            id="powerBtn" onclick="pressKey('^')">x<sup>y</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('7')">7</button></td>
@@ -216,7 +224,7 @@
                                 </tr>
                                 <tr>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
-                                            onclick="pressKey('10^')">10<sup>x</sup></button>
+                                            id="tenPowerBtn" onclick="pressKey('10^')">10<sup>x</sup></button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('4')">4</button></td>
@@ -228,7 +236,8 @@
                                             onclick="pressKey('-')">-</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100">log</button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            id="logBtn" onclick="calculateLog()">log</button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="pressKey('1')">1</button></td>
@@ -240,7 +249,8 @@
                                             onclick="pressKey('+')">+</button></td>
                                 </tr>
                                 <tr>
-                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100 ">ln</button>
+                                    <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
+                                            id="lnBtn" onclick="calculateLn()">ln</button>
                                     </td>
                                     <td class="p-0"><button type="button" class="btn btn-light w-100 h-100"
                                             onclick="toggleSign()">±</button>
@@ -263,9 +273,9 @@
             <div class="col-12 col-md-5 col-lg-3 d-flex flex-column align-items-start">
                 <div class="memorypart border-start ps-3 w-100" style="max-height: 600px; overflow-y: auto;">
                     <h5 class="mt-0 mb-3 text-primary fw-bold">History</h5>
-                    <ul id="historyList" class="list-unstyled small">
-                        <!-- Calculations will appear here -->
-                    </ul>
+                    <!-- Place this above or near your history list -->
+                    <button type="button" class="btn btn-danger btn-sm mb-2" onclick="clearHistory()">Clear History</button>
+                    <ul id="historyList" class="list-unstyled small"></ul>
                 </div>
             </div>
         </div>

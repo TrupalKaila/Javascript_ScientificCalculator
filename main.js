@@ -4,8 +4,12 @@ function pressKey(char) {
 
     let current = input.value;
 
+    // Handle pi
+    if (char === 'pi') {
+        current += Math.PI;
+    }
     // If input is 0 and user presses a number
-    if (current === "0" && !operators.includes(char)) {
+    else if (current === "0" && !operators.includes(char)) {
         current = char;
     }
     // If last character is an operator and user presses another operator
@@ -33,6 +37,7 @@ function backspaceKey() {
     input.value = current;
     localStorage.setItem('calculations', current);
 }
+
 
 document.addEventListener('keydown', function (event) {
     const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '(', ')', '.'];
