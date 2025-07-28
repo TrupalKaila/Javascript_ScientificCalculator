@@ -1,3 +1,4 @@
+let flag = 0;
 function pressKey(char) {
     const input = document.getElementById('calculations');
     const operators = ['+', '-', '*', '/'];
@@ -6,7 +7,17 @@ function pressKey(char) {
 
     // Handle pi
     if (char === 'pi') {
-        current += Math.PI;
+        if (current == "0" && flag == 0) {
+            current = Math.PI;
+            flag++;
+        }
+        else if (flag == 0){
+            current += Math.PI;
+            flag++
+        }
+    }
+    if (char == 'e'){
+        current= Math.E;
     }
     // If input is 0 and user presses a number
     else if (current === "0" && !operators.includes(char)) {
