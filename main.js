@@ -11,13 +11,13 @@ function pressKey(char) {
             current = Math.PI;
             flag++;
         }
-        else if (flag == 0){
+        else if (flag == 0) {
             current += Math.PI;
             flag++
         }
     }
-    if (char == 'e'){
-        current= Math.E;
+    if (char == 'e') {
+        current = Math.E;
     }
     // If input is 0 and user presses a number
     else if (current === "0" && !operators.includes(char)) {
@@ -27,6 +27,7 @@ function pressKey(char) {
     else if (operators.includes(current.slice(-1)) && operators.includes(char)) {
         current = current.slice(0, -1) + char; // Replace last operator
     }
+
     else {
         current += char; // Otherwise append
     }

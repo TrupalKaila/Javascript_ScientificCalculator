@@ -209,18 +209,18 @@ function toggleSecond() {
     const lnBtn = document.getElementById('lnBtn');
     if (isSecond) {
         lnBtn.innerHTML = 'e<sup>x</sup>';
-        lnBtn.onclick = function () {calculateEpowX()};
+        lnBtn.onclick = function () { calculateEpowX() };
     } else {
         lnBtn.innerHTML = 'ln';
         lnBtn.onclick = calculateLn;
     }
 }
 
-function calculateAbs(){    
+function calculateAbs() {
     const input = document.getElementById('calculations');
     let value = parseFloat(input.value);
-    
-    if(isNaN(value)){
+
+    if (isNaN(value)) {
         alert("Enter a valid number");
         return;
     }
@@ -244,7 +244,7 @@ function calculateEpowX() {
     localStorage.setItem('calculations', result);
 }
 
-function calculateExp(){
+function calculateExp() {
     const input = document.getElementById('calculations');
     let value = parseFloat(input.value);
 
@@ -333,172 +333,6 @@ function toggleAngleMode() {
     currentAngleIndex = (currentAngleIndex + 1) % 3;
     document.getElementById("angleModeBtn").textContent = angleModes[currentAngleIndex];
 }
-// function calculateTrig(funcName) {
-//     const input = document.getElementById('calculations');
-//     let value = parseFloat(input.value);
-
-//     if (isNaN(value)) {
-//         alert("Enter a valid number before using " + funcName + "()");
-//         return;
-//     }
-
-//     let radians;
-
-//     // Convert angle based on current mode
-//     switch (angleModes[currentAngleIndex]) {
-//         case "DEG":
-//             radians = value * Math.PI / 180;
-//             break;
-//         case "GRAD":
-//             radians = value * Math.PI / 200;
-//             break;
-//         case "RAD":
-//         default:
-//             radians = value;
-//             break;
-//     }
-
-//     let result;
-//     switch (funcName) {
-//         case 'sin':
-//             result = Math.sin(radians);
-//             break;
-//         case 'cos':
-//             result = Math.cos(radians);
-//             break;
-//         case 'tan':
-//             result = Math.tan(radians);
-//             break;
-//         case 'cot':
-//             result = 1 / Math.tan(radians);
-//             break;
-//         case 'sec':
-//             result = 1 / Math.cos(radians);
-//             break;
-//         case 'csc':
-//             result = 1 / Math.sin(radians);
-//             break;
-//         default:
-//             alert("Unknown function: " + funcName);
-//             return;
-//     }
-
-//     input.value = result;
-//     localStorage.setItem('calculations', result);
-// }
-
-// let isSecondInverse = false;
-
-// function toggleSecondInverse() {
-//     isSecondInverse = !isSecondInverse;
-//     const secondInverseBtn = document.getElementById('secondInverseBtn');
-//     if (isSecondInverse) {
-//         secondInverseBtn.classList.add('secondInverse-active');
-//     } else {
-//         secondInverseBtn.classList.remove('secondInverse-active');
-//     }
-
-//     const sinBtn = document.getElementById('sin');
-//     if (isSecondInverse) {
-//         sinBtn.innerHTML = 'sin<sup>-1</sup>';
-//         sinBtn.onclick = () => calculateInverseTrig('sin-1');
-//     } else {
-//         sinBtn.innerHTML = 'sin';
-//         sinBtn.onclick = () => calculateTrig('sin');
-//     }
-
-//     const cosBtn = document.getElementById('cos');
-//     if (isSecondInverse) {
-//         cosBtn.innerHTML = 'cos<sup>-1</sup>';
-//         cosBtn.onclick = () => calculateInverseTrig('cos-1');
-//     } else {
-//         cosBtn.innerHTML = 'cos';
-//         cosBtn.onclick =  () => calculateTrig('cos');
-//     }
-
-//     const tanBtn = document.getElementById('tan');
-//     if (isSecondInverse) {
-//         tanBtn.innerHTML = 'tan<sup>-1</sup>';
-//         tanBtn.onclick = () => calculateInverseTrig('tan-1');
-//     } else {
-//         tanBtn.innerHTML = 'tan';
-//         tanBtn.onclick = () => calculateTrig('tan');
-//     }
-
-//     const secBtn = document.getElementById('sec');
-//     if (isSecondInverse) {
-//         secBtn.innerHTML = 'sec<sup>-1</sup>';
-//         secBtn.onclick = () => calculateInverseTrig('sec-1');
-//     } else {
-//         secBtn.innerHTML = 'sec';
-//         secBtn.onclick = () => calculateTrig('sec');
-//     }
-
-//     const cscBtn = document.getElementById('csc');
-//     if (isSecondInverse) {
-//         cscBtn.innerHTML = 'csc<sup>-1</sup>';
-//         cscBtn.onclick = () => calculateInverseTrig('csc-1');
-//     } else {
-//         cscBtn.innerHTML = 'csc';
-//         cscBtn.onclick = () => calculateTrig('csc');
-//     }
-
-//     const cotBtn = document.getElementById('cot');
-//     if (isSecondInverse) {
-//         cotBtn.innerHTML = 'cot<sup>-1</sup>';
-//         cotBtn.onclick = () => calculateInverseTrig('cot-1');
-//     } else {
-//         cotBtn.innerHTML = 'cot';
-//         cotBtn.onclick = () => calculateTrig('cot');
-//     }
-// }
-
-// function calculateInverseTrig(funcName) {
-//     const input = document.getElementById('calculations');
-//     let value = parseFloat(input.value);
-
-//     if (isNaN(value)) {
-//         alert("Enter a valid number before using " + funcName + "()");
-//         return;
-//     }
-
-//     let result;
-//     switch (funcName) {
-//         case 'sin-1':
-//             result = Math.asin(value);
-//             console.log(result);
-//             break;
-//         case 'cos-1':
-//             result = Math.acos(value);
-//             break;
-//         case 'tan-1':
-//             result = Math.atan(value);
-//             break;
-//         case 'cot-1':
-//             result = 1 / Math.atan(value);
-//             break;
-//         case 'sec-1':
-//             result = 1 / Math.acos(value);
-//             break;
-//         case 'csc-1':
-//             result = 1 / Math.asin(value);
-//             break;
-//         default:
-//             alert("Unknown function: " + funcName);
-//             return;
-//     }
-//     switch (angleModes[currentAngleIndex]) {
-//         case "DEG":
-//             result = result * 180 / Math.PI;
-//             break;
-//         case "GRAD":
-//             result = result * 200 / Math.PI;
-//             break;
-//     }
-
-//     input.value = result;
-//     localStorage.setItem('calculations', result);
-// }
 
 let isSecondInverse = false;
 let isHyperbolic = false;
@@ -693,15 +527,15 @@ function basicFun(operationName) {
         case 'ceil':
             result = Math.ceil(value);
             break;
-            
+
         case 'random':
             result = Math.random(value);
             break;
-            
+
         case 'toDMS':
             result = convertToDMS();
             break;
-            
+
         // case 'toDEG':
         //     result = convertToDecimalDegrees();
         //     break;
