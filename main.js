@@ -5,6 +5,22 @@ function pressKey(char) {
 
     let current = input.value;
 
+    // Prevent multiple dots in a number
+    if (char === '.') {
+        // Find the last operator in the string
+        const lastOpIndex = Math.max(
+            current.lastIndexOf('+'),
+            current.lastIndexOf('-'),
+            current.lastIndexOf('*'),
+            current.lastIndexOf('/')
+        );
+        // Get the current number segment
+        const lastNumber = current.slice(lastOpIndex + 1);
+        if (lastNumber.includes('.')) {
+            return; // Already has a dot, do nothing
+        }
+    }
+
     // Handle pi
     if (char === 'pi') {
         if (current == "0" && flag == 0) {

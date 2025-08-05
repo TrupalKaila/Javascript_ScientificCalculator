@@ -1,12 +1,28 @@
 function calculate() {
     const input = document.getElementById('calculations');
+    let expression = input.value.trim();
+
+    // Check for yroot operation: x yroot y
+    const yrootMatch = expression.match(/^(-?\d+(\.\d+)?)\s*yroot\s*(-?\d+(\.\d+)?)$/i);
+    if (yrootMatch) {
+        const x = parseFloat(yrootMatch[1]);
+        const y = parseFloat(yrootMatch[3]);
+        if (isNaN(x) || isNaN(y) || y === 0) {
+            alert("Invalid input for y√x");
+            return;
+        }
+        const result = Math.pow(x, 1 / y);
+        input.value = result;
+        localStorage.setItem('calculations', result);
+        addToHistory(expression, result);
+        return;
+    }
+
+    // Default: normal calculation
     try {
-        const expression = input.value;
         const result = math.evaluate(expression);
         input.value = result;
         localStorage.setItem('calculations', result);
-
-        // Store history
         addToHistory(expression, result);
     } catch (e) {
         alert("Invalid expression");
@@ -284,42 +300,48 @@ function calculateCbrt() {
 
 function calculateYRoot() {
     const input = document.getElementById('calculations');
-    let x = parseFloat(input.value);
-    let y = prompt("Enter root degree (y):");
-    y = parseFloat(y);
-    if (isNaN(x) || isNaN(y) || y === 0) {
-        alert("Invalid input for y√x");
-        return;
+    let value = input.value.trim();
+    // Only add yroot if not already present
+    if (!value.includes('yroot')) {
+        if (value === "" || isNaN(Number(value))) {
+            alert("Enter a valid number for x first.");
+            return;
+        }
+        input.value = value + ' yroot ';
+        input.focus();
     }
-    let result = Math.pow(x, 1 / y);
-    input.value = result;
-    localStorage.setItem('calculations', result);
 }
 
-function calculateTwoPowerX() {
+// Update your calculate() function to handle yroot
+function calculate() {
     const input = document.getElementById('calculations');
-    let x = parseFloat(input.value);
-    if (isNaN(x)) {
-        alert("Invalid input for 2^x");
-        return;
-    }
-    let result = Math.pow(2, x);
-    input.value = result;
-    localStorage.setItem('calculations', result);
-}
+    let expression = input.value.trim();
 
-function calculateLogY() {
-    const input = document.getElementById('calculations');
-    let x = parseFloat(input.value);
-    let y = prompt("Enter base (y):");
-    y = parseFloat(y);
-    if (isNaN(x) || isNaN(y) || y <= 0 || x <= 0) {
-        alert("Invalid input for logy(x)");
+    // Check for yroot operation: x yroot y
+    const yrootMatch = expression.match(/^(-?\d+(\.\d+)?)\s*yroot\s*(-?\d+(\.\d+)?)$/i);
+    if (yrootMatch) {
+        const x = parseFloat(yrootMatch[1]);
+        const y = parseFloat(yrootMatch[3]);
+        if (isNaN(x) || isNaN(y) || y === 0) {
+            alert("Invalid input for y√x");
+            return;
+        }
+        const result = Math.pow(x, 1 / y);
+        input.value = result;
+        localStorage.setItem('calculations', result);
+        addToHistory(expression, result);
         return;
     }
-    let result = Math.log(x) / Math.log(y);
-    input.value = result;
-    localStorage.setItem('calculations', result);
+
+    // Default: normal calculation
+    try {
+        const result = math.evaluate(expression);
+        input.value = result;
+        localStorage.setItem('calculations', result);
+        addToHistory(expression, result);
+    } catch (e) {
+        alert("Invalid expression");
+    }
 }
 
 function clearHistory() {
